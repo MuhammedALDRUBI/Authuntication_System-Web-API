@@ -63,4 +63,24 @@
 
 <hr>
 
-### IsUserLoggedByQuery($userInfoArray = array()) 
+### IsUserLoggedByQuery($userInfoArray = array()) : is used to matching the Email and hashed password (these comes with Headers from frontend side) in database , and return JSON object contains the result (with messages).
+
+<hr>
+
+###  getLoggedUserInfo() :  is used to get user info from DB by user's email that will be sent with headers from frontend side , and return JSON object contains the result (data with messages).
+
+<hr>
+
+### whatUserPermission()  is used to get user permissions from DB by user's email that will be sent with headers from frontend side , and return JSON object contains the result (data with messages).
+
+<hr>
+
+### Register($userInfoArray) :  is used to insert (save) a new user into DB by user info array that will be sent with form (post request) from frontend side , and return JSON object contains the result (status & messages).
+
+<hr>
+
+
+Don't Forget to support me on :
+<p dir="rtl" >لا تنسى دعمي على </p>
+<p>Facebook : https://www.facebook.com/MDRDevelopment/</p>
+<p>Instagram : https://www.instagram.com/mdr_development_tr/</p>
