@@ -5,7 +5,7 @@ class AuthForWeb extends Auth{
  
     static public function Login( $userInfoArray,  $pathToRedirect = ""){
         try{
-            $pathToRedirect == "" ? "./index.php" : $pathToRedirect;
+            if($pathToRedirect == ""){ $pathToRedirect = "./index.php";}
             //sanitizing data before using it
             $Sanitizing_Filters_array = array("Password" => "string", "Email" => "email" );
             $userInfoArray =  DataHandler::Sanitize_Data($userInfoArray , $Sanitizing_Filters_array);
@@ -22,9 +22,11 @@ class AuthForWeb extends Auth{
             if(!DataHandler::check_hashed_password($user["Password"] , $userInfoArray["Password"])){throw new Exception("User is Not found");}
             
             SessionManager::StartLoginSession(true);
+            
             if(!SessionManager::SaveKeyInSession("user" , $user)){
                 throw new Exception("User Cann't login");
             } 
+            
             if(isset($userInfoArray["rememberMe"])){
                 self::RememberMe($user);
             }
