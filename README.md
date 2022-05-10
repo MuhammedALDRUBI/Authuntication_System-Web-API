@@ -22,17 +22,18 @@
     - Note : All data validation and filtering are executed automatically (By DataHandler class). 
   <hr>
   
-### isUserCookieFound($pathToRedirect = "./index.php") : is used to redirect user to home page if he select to save his info in cookies (after he clicked on remember me button).
+### isUserCookieFound($pathToRedirect = "./index.php") : is used to redirect user to home page if he has selected to save his info in cookies (after he clicked on remember me button and after a new visiting to website).
        - $pathToRedirect is used to redirect user to an other page if his info is found in session <b>And it is correct </b> (default value is index.php page path).
        - All values are matched in database ... if it is wrong nothing will be happen;
-     <hr>
+       
+ <hr>
      
 ### IsUserLoggedByQuery($userInfoArray) : is used to do a login operation without any redirection and <b>By array that contains Email And hashed password</b> , returns     true or false;
   <hr>
   
 ### IsUserLoginBySession() : is used to check if user's info is saved in session or not , it use SessionManager Class (FindKeyInSession method with "user" key).
     returns user info if it is found in session , else it returns false;
-    <hr>
+  <hr>
     
 ### getLoggedUserInfo() : is alias to IsUserLoginBySession() method (do the same operations).
   <hr>
@@ -42,7 +43,7 @@
   <hr>
   
 ### whatUserPermission() : is used to get user permissions that is a column in database (its value is important for user's previliges).
-    <hr>
+   <hr>
     
 ### logout($pathToRedirect = "") : is used to loggout and destroy all session's info (using SessionManager Class) , $pathToRedirect is used to specify a path for  redirectiong after logout operation is done.
   <hr>
@@ -53,10 +54,13 @@
 
 ### getNewPasswordByEmail($Email) : is used to change password of user and get a new password (returns a string value).
 
+<hr>
+
 ##usable Methodes in AuthForApi Class (For authuntication in Mobile and external side) :
 
 ### Login($userInfoArray ,  $pathToRedirect = "") : is used to login by an associative array that contains Email , password or user , it returns a JSON object that contains user info (that comes from DB to use it in all authuntication operations ) , if user is not found it will be returns a JSON oject that contains error messages.
     Note : All data validation and filtering are executed automatically (By DataHandler class). 
+
 <hr>
 
 ### IsUserLoggedByQuery($userInfoArray = array()) 
