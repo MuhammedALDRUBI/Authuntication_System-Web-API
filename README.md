@@ -16,7 +16,7 @@
 
 ##usable Methodes in AuthForWeb Class (For authuntication in web side) :
 
-### Login( $userInfoArray , $pathToRedirect = "./index.php")  : is used to login and save userinfo in session where :
+### Login( $userInfoArray , $pathToRedirect = "")  : is used to login and save userinfo in session where :
     - $userInfoArray is an associative array that contains Email and password of the user (that comes from user).
     - $pathToRedirect is used to redirect user to an other page if login operation is done (default value is index.php page path).
     - Note : All data validation and filtering are executed automatically (By DataHandler class). 
@@ -51,4 +51,12 @@
 
 <hr>
 
+### getNewPasswordByEmail($Email) : is used to change password of user and get a new password (returns a string value).
+
 ##usable Methodes in AuthForApi Class (For authuntication in Mobile and external side) :
+
+### Login($userInfoArray ,  $pathToRedirect = "") : is used to login by an associative array that contains Email , password or user , it returns a JSON object that contains user info (that comes from DB to use it in all authuntication operations ) , if user is not found it will be returns a JSON oject that contains error messages.
+    Note : All data validation and filtering are executed automatically (By DataHandler class). 
+<hr>
+
+### IsUserLoggedByQuery($userInfoArray = array()) 
