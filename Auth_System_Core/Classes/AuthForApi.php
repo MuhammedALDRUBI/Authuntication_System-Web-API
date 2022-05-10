@@ -3,7 +3,7 @@
 
 class AuthForApi extends Auth{
  
-    static public function Login($userInfoArray){
+    static public function Login($userInfoArray ,  $pathToRedirect = ""){
          
             //sanitizing data before using it
             $Sanitizing_Filters_array = array("Password" => "string", "Email" => "email" );
@@ -43,7 +43,7 @@ class AuthForApi extends Auth{
     
  
  
-    // must be private method but we cann't do it because Abstract Auth class doesn't allowes us to do that (must be public for AuthForApi class)
+    
     static public function IsUserLoggedByQuery($userInfoArray = array()){
         $userInfoArray = array("Email" => $_SERVER["HTTP_USEREMAIL"] , "Password" => $_SERVER["HTTP_USERPASSWORD"]);
         $Sanitizing_Filters_array = array( "Password" => "string", "Email" => "email" );
