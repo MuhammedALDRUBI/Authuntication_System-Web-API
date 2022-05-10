@@ -3,8 +3,9 @@
 
 class AuthForWeb extends Auth{
  
-    static public function Login( $userInfoArray){
+    static public function Login( $userInfoArray,  $pathToRedirect = ""){
         try{
+            $pathToRedirect == "" ? "./index.php" : $pathToRedirect;
             //sanitizing data before using it
             $Sanitizing_Filters_array = array("Password" => "string", "Email" => "email" );
             $userInfoArray =  DataHandler::Sanitize_Data($userInfoArray , $Sanitizing_Filters_array);
@@ -27,14 +28,14 @@ class AuthForWeb extends Auth{
             if(isset($userInfoArray["rememberMe"])){
                 self::RememberMe($user);
             }
-            SessionManager::RedirectToPath("./index.php");
+            SessionManager::RedirectToPath($pathToRedirect);
         }catch(Exception $e){
             return $e->getMessage();
         }
     }
     
 
-    static public function isUserCookieFound(){
+    static public function isUserCookieFound($pathToRedirect = "./index.php"){
             $emailFormCookie = SessionManager::FindDataInCookie("UserEmail");
             $passwordFormCookie = SessionManager::FindDataInCookie("UserPassword");
             $user = null;
@@ -45,12 +46,12 @@ class AuthForWeb extends Auth{
             if($user != null){
                 SessionManager::StartLoginSession(true);
                 if(SessionManager::SaveKeyInSession("user" , $user)){
-                    SessionManager::RedirectToPath("./index.php");
+                    SessionManager::RedirectToPath($pathToRedirect);
                 } 
             }
     }
 
-    static public function RememberMe($userInfoArray){
+    static private function RememberMe($userInfoArray){
         if(SessionManager::isCookieAvailable()){
             $oneMonthTime = strtotime("+1 Month");
             $addingEmailCookieProcess = SessionManager::setDataInCookieForATime("UserEmail" , $userInfoArray["Email"] , $oneMonthTime );
@@ -60,7 +61,7 @@ class AuthForWeb extends Auth{
      
     }
 
-    // must be private method but we cann't do it because Abstract Auth class doesn't allowes us to do that (must be public for AuthForApi class)
+    
     static public function IsUserLoggedByQuery($userInfoArray){
         return User::isUserFoundQueryByEmailPassword($userInfoArray["Email"] , $userInfoArray["Password"]);
     }
