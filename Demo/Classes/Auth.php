@@ -2,7 +2,7 @@
 
 abstract class Auth{
     
-    abstract static public function Login( $userInfoArray);
+    abstract static public function Login( $userInfoArray ,  $pathToRedirect = "" );
     abstract static public function IsUserLoggedByQuery($userInfoArray);
     abstract static public function getLoggedUserInfo();
     abstract static public function whatUserPermission(); 
